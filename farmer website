@@ -142,6 +142,7 @@
             color: white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             animation: slideIn 0.3s ease-out;
+            transition: opacity 0.3s ease-out;
         }
         
         @keyframes slideIn {
@@ -205,7 +206,6 @@
             <p class="text-center mb-0" data-translate="subtitle">ధరలు, వాతావరణం మరియు అంచనాల సమాచారం</p>
         </div>
     </div>
-
     <div class="container my-4">
         <div class="row">
             <div class="col-md-12">
@@ -250,7 +250,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row" id="resultsContainer" style="display: none;">
             <div class="col-md-6">
                 <div class="card">
@@ -326,9 +325,7 @@
             </div>
         </div>
     </div>
-
     <div class="alert-container" id="alertContainer"></div>
-
     <div class="footer">
         <div class="container">
             <div class="row">
@@ -347,7 +344,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Agriculture data from the provided Excel sheet (Andhra Pradesh)
@@ -423,7 +419,6 @@
             {id: 69, district: "Kurnool", crop: "Maize", season: "Kharif", year: 2024, area_yield: 600, production: 3000, avg_rainfall: 500, market_price: 21},
             {id: 70, district: "Guntur", crop: "Turmeric", season: "Rabi", year: 2024, area_yield: 300, production: 1500, avg_rainfall: 550, market_price: 38}
         ];
-
         // Tamil Nadu agriculture data from the provided Excel sheet
         const tamilNaduData = [
             {id: 101, district: "Ariyalur", crop: "Rice", season: "Kharif", year: 2024, area_yield: 500, production: 2500, avg_rainfall: 700, market_price: 25},
@@ -497,7 +492,6 @@
             {id: 169, district: "Dharmapuri", crop: "Maize", season: "Kharif", year: 2024, area_yield: 600, production: 3000, avg_rainfall: 500, market_price: 21},
             {id: 170, district: "Dindigul", crop: "Turmeric", season: "Rabi", year: 2024, area_yield: 300, production: 1500, avg_rainfall: 550, market_price: 38}
         ];
-
         // Crop images mapping
         const cropImages = {
             rice: "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
@@ -512,49 +506,47 @@
             grapes: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
             tobacco: "https://images.unsplash.com/photo-1616594742763-7459e8e5a978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
         };
-
         // Tamil Nadu districts
         const tamilNaduDistricts = [
-            {value: 'ariyalur', name: 'Ariyalur'},
-            {value: 'chengalpattu', name: 'Chengalpattu'},
-            {value: 'chennai', name: 'Chennai'},
-            {value: 'coimbatore', name: 'Coimbatore'},
-            {value: 'cuddalore', name: 'Cuddalore'},
-            {value: 'dharmapuri', name: 'Dharmapuri'},
-            {value: 'dindigul', name: 'Dindigul'},
-            {value: 'erode', name: 'Erode'},
-            {value: 'kallakurichi', name: 'Kallakurichi'},
-            {value: 'kanchipuram', name: 'Kanchipuram'},
-            {value: 'kanyakumari', name: 'Kanyakumari'},
-            {value: 'karur', name: 'Karur'},
-            {value: 'krishnagiri', name: 'Krishnagiri'},
-            {value: 'madurai', name: 'Madurai'},
-            {value: 'mayiladuthurai', name: 'Mayiladuthurai'},
-            {value: 'nagapattinam', name: 'Nagapattinam'},
-            {value: 'namakkal', name: 'Namakkal'},
-            {value: 'nilgiris', name: 'Nilgiris'},
-            {value: 'perambalur', name: 'Perambalur'},
-            {value: 'pudukkottai', name: 'Pudukkottai'},
-            {value: 'ramanathapuram', name: 'Ramanathapuram'},
-            {value: 'ranipet', name: 'Ranipet'},
-            {value: 'salem', name: 'Salem'},
-            {value: 'sivaganga', name: 'Sivaganga'},
-            {value: 'tenkasi', name: 'Tenkasi'},
-            {value: 'thanjavur', name: 'Thanjavur'},
-            {value: 'theni', name: 'Theni'},
-            {value: 'thoothukudi', name: 'Thoothukudi'},
-            {value: 'tiruchirappalli', name: 'Tiruchirappalli'},
-            {value: 'tirunelveli', name: 'Tirunelveli'},
-            {value: 'tirupathur', name: 'Tirupathur'},
-            {value: 'tiruppur', name: 'Tiruppur'},
-            {value: 'tiruvallur', name: 'Tiruvallur'},
-            {value: 'tiruvannamalai', name: 'Tiruvannamalai'},
-            {value: 'tiruvarur', name: 'Tiruvarur'},
-            {value: 'vellore', name: 'Vellore'},
-            {value: 'viluppuram', name: 'Viluppuram'},
-            {value: 'virudhunagar', name: 'Virudhunagar'}
+            {value: 'ariyalur', name: 'Ariyalur', translate: 'ariyalur'},
+            {value: 'chengalpattu', name: 'Chengalpattu', translate: 'chengalpattu'},
+            {value: 'chennai', name: 'Chennai', translate: 'chennai'},
+            {value: 'coimbatore', name: 'Coimbatore', translate: 'coimbatore'},
+            {value: 'cuddalore', name: 'Cuddalore', translate: 'cuddalore'},
+            {value: 'dharmapuri', name: 'Dharmapuri', translate: 'dharmapuri'},
+            {value: 'dindigul', name: 'Dindigul', translate: 'dindigul'},
+            {value: 'erode', name: 'Erode', translate: 'erode'},
+            {value: 'kallakurichi', name: 'Kallakurichi', translate: 'kallakurichi'},
+            {value: 'kanchipuram', name: 'Kanchipuram', translate: 'kanchipuram'},
+            {value: 'kanyakumari', name: 'Kanyakumari', translate: 'kanyakumari'},
+            {value: 'karur', name: 'Karur', translate: 'karur'},
+            {value: 'krishnagiri', name: 'Krishnagiri', translate: 'krishnagiri'},
+            {value: 'madurai', name: 'Madurai', translate: 'madurai'},
+            {value: 'mayiladuthurai', name: 'Mayiladuthurai', translate: 'mayiladuthurai'},
+            {value: 'nagapattinam', name: 'Nagapattinam', translate: 'nagapattinam'},
+            {value: 'namakkal', name: 'Namakkal', translate: 'namakkal'},
+            {value: 'nilgiris', name: 'Nilgiris', translate: 'nilgiris'},
+            {value: 'perambalur', name: 'Perambalur', translate: 'perambalur'},
+            {value: 'pudukkottai', name: 'Pudukkottai', translate: 'pudukkottai'},
+            {value: 'ramanathapuram', name: 'Ramanathapuram', translate: 'ramanathapuram'},
+            {value: 'ranipet', name: 'Ranipet', translate: 'ranipet'},
+            {value: 'salem', name: 'Salem', translate: 'salem'},
+            {value: 'sivaganga', name: 'Sivaganga', translate: 'sivaganga'},
+            {value: 'tenkasi', name: 'Tenkasi', translate: 'tenkasi'},
+            {value: 'thanjavur', name: 'Thanjavur', translate: 'thanjavur'},
+            {value: 'theni', name: 'Theni', translate: 'theni'},
+            {value: 'thoothukudi', name: 'Thoothukudi', translate: 'thoothukudi'},
+            {value: 'tiruchirappalli', name: 'Tiruchirappalli', translate: 'tiruchirappalli'},
+            {value: 'tirunelveli', name: 'Tirunelveli', translate: 'tirunelveli'},
+            {value: 'tirupathur', name: 'Tirupathur', translate: 'tirupathur'},
+            {value: 'tiruppur', name: 'Tiruppur', translate: 'tiruppur'},
+            {value: 'tiruvallur', name: 'Tiruvallur', translate: 'tiruvallur'},
+            {value: 'tiruvannamalai', name: 'Tiruvannamalai', translate: 'tiruvannamalai'},
+            {value: 'tiruvarur', name: 'Tiruvarur', translate: 'tiruvarur'},
+            {value: 'vellore', name: 'Vellore', translate: 'vellore'},
+            {value: 'viluppuram', name: 'Viluppuram', translate: 'viluppuram'},
+            {value: 'virudhunagar', name: 'Virudhunagar', translate: 'virudhunagar'}
         ];
-
         // Andhra Pradesh districts
         const andhraDistricts = [
             {value: 'anantapur', name: 'Anantapur', translate: 'anantapur'},
@@ -569,7 +561,6 @@
             {value: 'westgodavari', name: 'West Godavari', translate: 'westgodavari'},
             {value: 'chittoor', name: 'Chittoor', translate: 'chittoor'}
         ];
-
         // Translations
         const translations = {
             te: {
@@ -741,10 +732,8 @@
                 dataFound: "Data found successfully!"
             }
         };
-
         // Current language
         let currentLang = 'te';
-
         // DOM elements
         const langButtons = document.querySelectorAll('.lang-btn');
         const stateSelect = document.getElementById('stateSelect');
@@ -753,7 +742,6 @@
         const searchBtn = document.getElementById('searchBtn');
         const resultsContainer = document.getElementById('resultsContainer');
         const alertContainer = document.getElementById('alertContainer');
-
         // Language switching
         langButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -769,7 +757,6 @@
                 updateDistricts();
             });
         });
-
         // Update translations
         function updateTranslations() {
             document.querySelectorAll('[data-translate]').forEach(element => {
@@ -778,7 +765,6 @@
                     element.textContent = translations[currentLang][key];
                 }
             });
-
             // Update select options
             document.querySelectorAll('select option').forEach(option => {
                 const key = option.getAttribute('data-translate');
@@ -787,12 +773,10 @@
                 }
             });
         }
-
         // Update districts based on state
         function updateDistricts() {
             const state = stateSelect.value;
             districtSelect.innerHTML = '';
-
             if (state === 'ap') {
                 // Andhra Pradesh districts
                 andhraDistricts.forEach(district => {
@@ -807,19 +791,18 @@
                 tamilNaduDistricts.forEach(district => {
                     const option = document.createElement('option');
                     option.value = district.value;
-                    option.textContent = district.name;
+                    option.setAttribute('data-translate', district.translate);
+                    option.textContent = translations[currentLang][district.translate] || district.name;
                     districtSelect.appendChild(option);
                 });
             }
         }
-
         // State change event
         stateSelect.addEventListener('change', updateDistricts);
-
         // Show alert message
         function showAlert(message, type = 'info') {
             const alert = document.createElement('div');
-            alert.className = custom-alert alert-${type};
+            alert.className = 'custom-alert alert-' + type;
             alert.textContent = message;
             
             alertContainer.appendChild(alert);
@@ -828,17 +811,17 @@
             setTimeout(() => {
                 alert.style.opacity = '0';
                 setTimeout(() => {
-                    alertContainer.removeChild(alert);
+                    if (alertContainer.contains(alert)) {
+                        alertContainer.removeChild(alert);
+                    }
                 }, 300);
             }, 3000);
         }
-
         // Search button click event
         searchBtn.addEventListener('click', () => {
             const state = stateSelect.value;
             const district = districtSelect.value;
             const crop = cropSelect.value;
-
             // Find matching data
             let matchingData = null;
             let dataSource = state === 'ap' ? andhraData : tamilNaduData;
@@ -850,14 +833,14 @@
                 const dataDistrict = data.district.toLowerCase().replace(/\s+/g, '');
                 return dataDistrict === normalizedDistrict && data.crop.toLowerCase() === crop;
             });
-
+            
             if (matchingData) {
                 // Show results container
                 resultsContainer.style.display = 'flex';
                 
                 // Show success alert
                 showAlert(translations[currentLang].dataFound, 'success');
-
+                
                 // Update crop image and details
                 const cropImage = document.getElementById('cropImage');
                 const cropName = document.getElementById('cropName');
@@ -877,46 +860,50 @@
                 
                 // Update crop season based on language
                 cropSeason.textContent = translations[currentLang][matchingData.season.toLowerCase()];
-
+                
                 // Update price information
                 const currentPrice = matchingData.market_price;
                 const lastYearPrice = currentPrice * 0.9; // Simulate last year's price (10% less)
                 const priceChange = ((currentPrice - lastYearPrice) / lastYearPrice * 100).toFixed(1);
                 const nextYearPrice = currentPrice * 1.1; // Simulate next year's price (10% more)
                 const nextYearChange = ((nextYearPrice - currentPrice) / currentPrice * 100).toFixed(1);
-
-                document.getElementById('currentPrice').textContent = ₹${currentPrice};
-                document.getElementById('lastYearPrice').textContent = ₹${lastYearPrice.toFixed(0)};
+                
+                document.getElementById('currentPrice').textContent = '₹' + currentPrice;
+                document.getElementById('lastYearPrice').textContent = '₹' + lastYearPrice.toFixed(0);
                 
                 const priceChangeElement = document.getElementById('priceChange');
                 if (priceChange > 0) {
                     priceChangeElement.className = 'price-change price-up';
-                    priceChangeElement.innerHTML = <span>▲ ${priceChange}% <span data-translate="increase">${translations[currentLang].increase}</span></span>;
+                    priceChangeElement.innerHTML = '<span>▲ ' + priceChange + '% <span data-translate="increase">' + translations[currentLang].increase + '</span></span>';
                 } else {
                     priceChangeElement.className = 'price-change price-down';
-                    priceChangeElement.innerHTML = <span>▼ ${Math.abs(priceChange)}% <span data-translate="decrease">${translations[currentLang].decrease}</span></span>;
+                    priceChangeElement.innerHTML = '<span>▼ ' + Math.abs(priceChange) + '% <span data-translate="decrease">' + translations[currentLang].decrease + '</span></span>';
                 }
-
-                document.getElementById('nextYearPrice').textContent = ₹${nextYearPrice.toFixed(0)};
+                
+                document.getElementById('nextYearPrice').textContent = '₹' + nextYearPrice.toFixed(0);
                 
                 const nextYearChangeElement = document.getElementById('nextYearChange');
                 if (nextYearChange > 0) {
                     nextYearChangeElement.className = 'price-change price-up';
-                    nextYearChangeElement.innerHTML = <span>▲ ${nextYearChange}% <span data-translate="predictedIncrease">${translations[currentLang].predictedIncrease}</span></span>;
+                    nextYearChangeElement.innerHTML = '<span>▲ ' + nextYearChange + '% <span data-translate="predictedIncrease">' + translations[currentLang].predictedIncrease + '</span></span>';
                 } else {
                     nextYearChangeElement.className = 'price-change price-down';
-                    nextYearChangeElement.innerHTML = <span>▼ ${Math.abs(nextYearChange)}% <span data-translate="predictedDecrease">${translations[currentLang].predictedDecrease}</span></span>;
+                    nextYearChangeElement.innerHTML = '<span>▼ ' + Math.abs(nextYearChange) + '% <span data-translate="predictedDecrease">' + translations[currentLang].predictedDecrease + '</span></span>';
                 }
-
+                
                 // Update weather information
                 const seasonElement = document.getElementById('season');
                 seasonElement.textContent = translations[currentLang][matchingData.season.toLowerCase()];
                 
-                document.getElementById('avgRainfall').textContent = ${matchingData.avg_rainfall}mm;
-                document.getElementById('avgTemp').textContent = ${(25 + Math.random() * 10).toFixed(0)}°C; // Random temp between 25-35°C
-                document.getElementById('production').textContent = ${matchingData.production} ${currentLang === 'te' ? 'క్వింటాలు' : currentLang === 'ta' ? 'குவிண்டல்' : 'Quintals'};
-                document.getElementById('areaYield').textContent = ${matchingData.area_yield} ${currentLang === 'te' ? 'హెక్టార్లు' : currentLang === 'ta' ? 'ஹெக்டேர்' : 'Hectares'};
-
+                document.getElementById('avgRainfall').textContent = matchingData.avg_rainfall + 'mm';
+                document.getElementById('avgTemp').textContent = (25 + Math.random() * 10).toFixed(0) + '°C'; // Random temp between 25-35°C
+                
+                const productionUnit = currentLang === 'te' ? 'క్వింటాలు' : currentLang === 'ta' ? 'குவிண்டல்' : 'Quintals';
+                document.getElementById('production').textContent = matchingData.production + ' ' + productionUnit;
+                
+                const areaUnit = currentLang === 'te' ? 'హెక్టార్లు' : currentLang === 'ta' ? 'ஹெக்டேர்' : 'Hectares';
+                document.getElementById('areaYield').textContent = matchingData.area_yield + ' ' + areaUnit;
+                
                 // Update weather icon based on rainfall
                 const weatherIcon = document.querySelector('.weather-icon');
                 if (matchingData.avg_rainfall > 600) {
@@ -932,7 +919,6 @@
                 resultsContainer.style.display = 'none';
             }
         });
-
         // Initialize the page
         updateTranslations();
         updateDistricts();
